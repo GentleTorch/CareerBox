@@ -7,20 +7,20 @@ using namespace std;
 
 int main()
 {
-	string str, tmp;
-	cin >> str;
-	int n, p, l;
-	cin >> n;
-	while (n--)
+	int n, s, l;
+	int ans = 0;
+	int perdisk = 0;
+
+	cin >> n >> s >> l;
+	perdisk = l / (s + (s == l ? 0 : 1));
+	if (perdisk % 13 == 0)
 	{
-		cin >> p >> l;
-		tmp = str.substr(p, l);
-		reverse(tmp.begin(), tmp.end());
-		str.insert(p + l, tmp);
+		perdisk--;
 	}
-
-	cout << str << endl;
+	if (n > perdisk)
+		cout << n / perdisk + (n%perdisk ? 1 : 0) << endl;
+	else
+		cout << 1 + (n % 13 ? 0 : 1) << endl;
 	return 0;
-
 
 }
