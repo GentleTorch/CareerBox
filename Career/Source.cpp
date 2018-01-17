@@ -1,26 +1,28 @@
 #include<iostream>
-#include<cstring>
-#include<string>
-#include<algorithm>
+#include<cstdio>
 
 using namespace std;
 
 int main()
 {
-	int n, s, l;
-	int ans = 0;
-	int perdisk = 0;
+	long long x, k;
+	long long bitNum = 1;
+	long long ans = 0;
+	cin >> x >> k;
 
-	cin >> n >> s >> l;
-	perdisk = l / (s + (s == l ? 0 : 1));
-	if (perdisk % 13 == 0)
+	while (k)
 	{
-		perdisk--;
-	}
-	if (n > perdisk)
-		cout << n / perdisk + (n%perdisk ? 1 : 0) << endl;
-	else
-		cout << 1 + (n % 13 ? 0 : 1) << endl;
-	return 0;
+		if ((x&bitNum) == 0)
+		{
+			ans += (bitNum*(k & 1));
+			k >>= 1;
+		}
 
+		bitNum <<= 1;
+
+	}
+	
+	cout << ans << endl;
+
+	return 0;
 }
